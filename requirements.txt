@@ -1,0 +1,8 @@
+Django
+django-ipware
+django-ratelimit
+celery
+redis
+geoip2
+scikit-learn
+requests
