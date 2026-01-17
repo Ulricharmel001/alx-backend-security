@@ -139,4 +139,21 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# Rate limit configurations
+RATELIMIT_AUTH_RATE = '10/m'
+RATELIMIT_ANON_RATE = '5/m'
+
+# Cache configuration for rate limiting (using Redis)
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.redis.RedisCache',
+        'LOCATION': 'redis://127.0.0.1:6379/1',
+    }
+}
+
+# Rate Limiting Configuration
+RATELIMIT_VIEW = 'ip_tracking.views.ratelimited_view'
+RATELIMIT_BLOCK_GET = True  # Block GET requests when rate limit is exceeded
+RATELIMIT_USE_CACHE = 'default'  # Use default cache backend for storing rate limit data
+
 
