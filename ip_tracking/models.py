@@ -1,18 +1,28 @@
 from django.db import models
-# log request ip to db 
+
+# log request ip to db
 class RequestLog(models.Model):
-    ip_address = models.GenericIPAddressField()  
-    timestamp = models.DateTimeField(auto_now_add=True) 
-    path = models.CharField(max_length=255)  
+    ip_address = models.GenericIPAddressField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+    path = models.CharField(max_length=255)
     city = models.CharField(max_length=225, null=True)
     country = models.CharField(max_length=225, null=True)
-    
 
     def __str__(self):
         return f"{self.ip_address} - {self.path} at {self.timestamp}"
 
-# This model track ip address which are blacklisted 
+# This model track ip address which are blacklisted
 class BlockedIP(models.Model):
     ip_address = models.GenericIPAddressField(unique=True)
+
     def __str__(self):
         return self.ip_address
+
+# Model to track suspicious IP addresses
+class SuspiciousIP(models.Model):
+    ip_address = models.GenericIPAddressField()
+    reason = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.ip_address} - {self.reason}"

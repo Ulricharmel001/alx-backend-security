@@ -122,7 +122,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Africa/Lagos'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -156,13 +156,4 @@ RATELIMIT_VIEW = 'ip_tracking.views.ratelimited_view'
 RATELIMIT_BLOCK_GET = True  # Block GET requests when rate limit is exceeded
 RATELIMIT_USE_CACHE = 'default'  # Use default cache backend for storing rate limit data
 
-
-
-# Celery Configuration
-CELERY_BROKER_URL = 'redis://127.0.0.1:6379/0'
-CELERY_RESULT_BACKEND = 'redis://127.0.0.1:6379/0'
-CELERY_ACCEPT_CONTENT = ['json']
-CELERY_TASK_SERIALIZER = 'json'
-CELERY_RESULT_SERIALIZER = 'json'
-CELERY_TIMEZONE = 'Africa/Lagos'
 
