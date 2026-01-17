@@ -6,3 +6,4 @@ redis
 geoip2
 scikit-learn
 requests
+django-ratelimit
